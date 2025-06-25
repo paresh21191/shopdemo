@@ -34,10 +34,15 @@
         <li class="nav-item">
           <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="{{ route('products.index') }}">Products</a>
-        </li>
+        
         @auth
+        <li class="nav-item">
+          @if(Auth::User()->is_admin == 1)
+          <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="{{ route('products.manage.index') }}">Products</a>
+          @else
+          <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="{{ route('products.cust.index') }}">Products</a>
+          @endif
+        </li> 
         <li class="nav-item">
           <a class="nav-link {{ request()->is('orders*') ? 'active' : '' }}" href="{{ route('orders.index') }}">Orders</a>
         </li>

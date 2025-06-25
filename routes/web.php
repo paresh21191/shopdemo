@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CustomerProductController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,12 +33,12 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard or homepage after login
     Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/products', [CustomerProductController::class, 'index'])->name('products.index');
+Route::get('/products', [CustomerProductController::class, 'index'])->name('products.cust.index');
 Route::get('/products/{product}', [CustomerProductController::class, 'show'])->name('products.show');
 
 // Admin product management routes (restricted)
 Route::middleware(['auth', 'can:manage-products'])->prefix('admin')->group(function () {
-    Route::resource('products', AdminProductController::class)->names('products.manage');
+    Route::resource('products', ProductController::class)->names('products.manage');
 });
 
     // Orders user can see their own orders, admin can see all

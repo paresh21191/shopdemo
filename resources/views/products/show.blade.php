@@ -36,7 +36,7 @@
     @endif
 
     <div class="mt-4">
-      <a href="{{ route('products.index') }}" class="btn btn-outline-secondary">Back to Products</a>
+      <a href="{{ route('products.manage.index') }}" class="btn btn-outline-secondary">Back to Products</a>
     </div>
   </div>
 </div>

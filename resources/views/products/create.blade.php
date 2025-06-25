@@ -3,41 +3,50 @@
 @section('title', 'Add Product')
 
 @section('content')
-<h1 class="text-3xl font-bold mb-6 text-gray-900">Add New Product</h1>
+<div class="container mt-5">
+    <h1 class="mb-4 fw-bold text-dark">Add New Product</h1>
 
-<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" class="max-w-lg bg-white p-6 rounded shadow">
-    @csrf
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="name">Name</label>
-        <input type="text" name="name" id="name" value="{{ old('name') }}" required class="input-field w-full" />
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="POST" action="{{ route('products.manage.store') }}" enctype="multipart/form-data">
+                @csrf
+
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-semibold">Name</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" required class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="sku" class="form-label fw-semibold">SKU</label>
+                    <input type="text" name="sku" id="sku" value="{{ old('sku') }}" required class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-semibold">Description</label>
+                    <textarea name="description" id="description" rows="4" class="form-control">{{ old('description') }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label fw-semibold">Price ($)</label>
+                    <input type="number" step="0.01" min="0" name="price" id="price" value="{{ old('price') }}" required class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="inventory" class="form-label fw-semibold">Inventory</label>
+                    <input type="number" min="0" name="inventory" id="inventory" value="{{ old('inventory') ?? 0 }}" required class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label fw-semibold">Product Image</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary px-4">Save Product</button>
+                    <a href="{{ route('products.manage.index') }}" class="text-muted text-decoration-none">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="sku">SKU</label>
-        <input type="text" name="sku" id="sku" value="{{ old('sku') }}" required class="input-field w-full" />
-    </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="description">Description</label>
-        <textarea name="description" id="description" rows="4" class="input-field w-full">{{ old('description') }}</textarea>
-    </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="price">Price ($)</label>
-        <input type="number" step="0.01" min="0" name="price" id="price" value="{{ old('price') }}" required class="input-field w-full" />
-    </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="inventory">Inventory</label>
-        <input type="number" min="0" name="inventory" id="inventory" value="{{ old('inventory') ?? 0 }}" required class="input-field w-full" />
-    </div>
-
-    <div class="mb-4">
-        <label class="block font-semibold mb-1" for="image">Product Image</label>
-        <input type="file" name="image" id="image" class="w-full" />
-    </div>
-
-    <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">Save Product</button>
-    <a href="{{ route('products.index') }}" class="ml-4 text-gray-600 hover:underline">Cancel</a>
-</form>
+</div>
 @endsection

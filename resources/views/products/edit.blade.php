@@ -6,7 +6,7 @@
 <div class="max-w-4xl mx-auto my-5">
     <h1 class="display-4 fw-bold mb-4">Edit Product</h1>
 
-    <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('products.manage.update', $product) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -70,7 +70,7 @@
         </div>
 
         <div class="d-flex gap-3">
-            <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('products.manage.index') }}" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary">Update Product</button>
         </div>
     </form>

@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
   <h1 class="display-4 fw-bold">Products</h1>
   @can('manage-products')
-    <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg">
+    <a href="{{ route('products.manage.create') }}" class="btn btn-primary btn-sm">
       <i class="bi bi-plus-lg"></i> Add Product
     </a>
   @endcan
@@ -15,7 +15,7 @@
 @if($products->isEmpty())
   <p class="text-muted text-center fs-5 mt-5">No products found.</p>
 @else
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
     @foreach($products as $product)
       <div class="col">
         <div class="card shadow-sm h-100">
@@ -34,10 +34,10 @@
                 Inventory: {{ $product->inventory }}
               </p>
               <div class="mt-auto d-flex gap-2 flex-wrap">
-                <a href="{{ route('products.show', $product) }}" class="btn btn-outline-primary flex-grow-1">View</a>
+                <a href="{{ route('products.manage.show', $product) }}" class="btn btn-outline-primary flex-grow-1">View</a>
                 @can('manage-products')
-                  <a href="{{ route('products.edit', $product) }}" class="btn btn-primary flex-grow-1">Edit</a>
-                  <form action="{{ route('products.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="flex-grow-1 m-0">
+                  <a href="{{ route('products.manage.edit', $product) }}" class="btn btn-primary flex-grow-1">Edit</a>
+                  <form action="{{ route('products.manage.destroy', $product) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="flex-grow-1 m-0">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger w-100">Delete</button>

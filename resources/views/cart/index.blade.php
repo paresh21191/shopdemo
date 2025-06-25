@@ -15,7 +15,7 @@
 @if(empty($cartItems))
   <p class="text-center text-muted fs-5 my-5">Your cart is empty.</p>
   <div class="text-center">
-    <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Go Shopping</a>
+    <a href="{{ route('products.manage.index') }}" class="btn btn-primary btn-lg">Go Shopping</a>
   </div>
 @else
   <form method="POST" action="{{ route('cart.checkout') }}">
@@ -65,7 +65,7 @@
     </div>
 
     <div class="d-flex justify-content-between">
-      <a href="{{ route('products.index') }}" class="btn btn-outline-primary btn-lg">Continue Shopping</a>
+      <a href="{{ route('products.manage.index') }}" class="btn btn-outline-primary btn-lg">Continue Shopping</a>
       <button type="submit" class="btn btn-primary btn-lg">Checkout</button>
     </div>
   </form>
